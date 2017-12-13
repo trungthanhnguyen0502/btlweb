@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'TestController@index');
+Route::get('/auth/captcha', 'Auth\\CaptchaController@index');
 
 
