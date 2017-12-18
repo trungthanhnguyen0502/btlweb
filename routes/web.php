@@ -11,8 +11,28 @@
 |
 */
 
+/**
+ * Main Routes
+ */
+
 Route::get('/', function () {
-    return view('spa');
+	return session('captcha');
 });
 
+/**
+ * Auth Routes
+ */
+
+Route::prefix('auth')->group(function () {
+
+    // Captcha Routes
+	Route::prefix('captcha')->group(function () {
+	    Route::get('/', 'Auth\\CaptchaController@index');
+	    Route::get('/key', 'Auth\\CaptchaController@key');
+    });
+
+	// Login Routes
+	Route::any('login', 'Auth\\LoginController@index');
+
+});
 
