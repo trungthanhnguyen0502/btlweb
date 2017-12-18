@@ -1,27 +1,29 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class CaptchaController extends Controller
 {
+    /**
+     * Hash Algorithms
+     *
+     * @var integer
+     */
+
+    public const HASH_ALGO_NONE = 0;
+    public const HASH_ALGO_MD5 = 1;
+    public const HASH_ALGO_SHA1 = 2;
+    public const HASH_ALGO_MIXED_MD5_SHA1 = 12;
+    public const HASH_ALGO_MIXED_SHA1_MD5 = 21;
     /**
      * The image resource
      * @var object|resource
      */
 
     protected $image;
-
-    /**
-     * Class constructor
-     */
-
-    public function __construct() {
-        $this->image = null;
-        $this->keystring = '';
-        $this->set_jpeg_quality(98);
-    }
-
     /**
      * Captcha credits
      * The bottom text of captcha
@@ -30,11 +32,6 @@ class CaptchaController extends Controller
      */
 
     protected $credits;
-
-    public function set_credits($credits = '') {
-        $this->credits = $credits;
-    }
-
     /**
      * JPEG Quality
      *
@@ -42,11 +39,6 @@ class CaptchaController extends Controller
      */
 
     protected $jpeg_quality;
-
-    public function set_jpeg_quality($jpeg_quality = 98) {
-        $this->jpeg_quality = $jpeg_quality;
-    }
-
     /**
      * Captcha keystring
      * @var string
@@ -55,20 +47,32 @@ class CaptchaController extends Controller
     protected $keystring;
 
     /**
-     * Hash Algorithms
-     *
-     * @var integer
+     * Class constructor
      */
 
-    public const HASH_ALGO_NONE = 0;
+    public function __construct()
+    {
+        $this->image = null;
+        $this->keystring = '';
+        $this->set_jpeg_quality(98);
+    }
 
-    public const HASH_ALGO_MD5 = 1;
+    public function set_jpeg_quality($jpeg_quality = 98)
+    {
+        $this->jpeg_quality = $jpeg_quality;
+    }
 
-    public const HASH_ALGO_SHA1 = 2;
+    public function set_credits($credits = '')
+    {
+        $this->credits = $credits;
+    }
 
-    public const HASH_ALGO_MIXED_MD5_SHA1 = 12;
-
-    public const HASH_ALGO_MIXED_SHA1_MD5 = 21;
+    public function index()
+    {
+        $this->create_captcha();
+        session(['captcha' => $this->get_keystring(CaptchaController::HASH_ALGO_MD5)]);
+        $this->output();
+    }
 
     /**
      * Generates keystring and image
@@ -76,7 +80,8 @@ class CaptchaController extends Controller
      * @return  resource
      */
 
-    public function create_captcha() {
+    public function create_captcha()
+    {
         ////////////////////////////////////////////////////////////
         // Настройки CAPTCHA                                      //
         ////////////////////////////////////////////////////////////
@@ -275,9 +280,10 @@ class CaptchaController extends Controller
      * @return  string
      */
 
-    public function get_keystring($hash_algo = CaptchaController::HASH_ALGO_NONE) {
+    public function get_keystring($hash_algo = CaptchaController::HASH_ALGO_NONE)
+    {
 
-        switch ($hash_algo) { 
+        switch ($hash_algo) {
             case CaptchaController::HASH_ALGO_MD5:
                 return md5($this->keystring);
                 break;
@@ -296,7 +302,8 @@ class CaptchaController extends Controller
         }
     }
 
-    public function output($type = IMAGETYPE_PNG) {
+    public function output($type = IMAGETYPE_PNG)
+    {
         ob_start();
         header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
         header('Cache-Control: no-store, no-cache, must-revalidate');
@@ -330,8 +337,19 @@ class CaptchaController extends Controller
         ob_end_flush();
     }
 
-    public function index() {
-    	$this->create_captcha();
-    	$this->output();
+    public function key(Request $request)
+    {
+        $key = session('captcha');
+        if ($key == null) {
+            $this->create_captcha();
+            session(['captcha' => $this->get_keystring(CaptchaController::HASH_ALGO_MD5)]);
+            return [
+                'key' => session('captcha')
+            ];
+        } else {
+            return [
+                'key' => $key
+            ];
+        }
     }
 }
