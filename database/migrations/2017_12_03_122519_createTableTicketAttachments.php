@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTableTicketAttachments extends Migration
 {
@@ -19,6 +19,7 @@ class CreateTableTicketAttachments extends Migration
             $table->string('mime_type')->default('application/octet-stream');
             $table->string('file_name');
             $table->binary('data');
+            $table->integer('uploaded_at');
             $table->timestamps();
         });
     }
