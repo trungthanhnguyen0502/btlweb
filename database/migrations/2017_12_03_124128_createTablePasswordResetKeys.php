@@ -21,7 +21,8 @@ class CreateTablePasswordResetKeys extends Migration
             $table->ipAddress('ip_address');
             $table->string('browser');
             $table->string('platform');
-            $table->integer('expired');
+            $table->integer('requested_at');
+            $table->integer('expired_at');
             $table->timestamps();
         });
     }

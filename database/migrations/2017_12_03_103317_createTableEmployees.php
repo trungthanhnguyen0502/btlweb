@@ -25,7 +25,8 @@ class CreateTableEmployees extends Migration
             $table->string('display_name');
             $table->string('title');
             $table->integer('branch');
-            $table->string('roles');
+            $table->string('branch_name');
+            $table->tinyInteger('role');
             $table->string('is_leader_of')->nullable();
             $table->timestamps();
         });

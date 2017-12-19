@@ -17,6 +17,7 @@ class CreateTableTeams extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('branch');
+            $table->string('branch_name');
             $table->string('description');
             $table->timestamps();
         });

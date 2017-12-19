@@ -16,11 +16,12 @@ class CreateTableSessions extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('employee_id');
-            $table->string('key');
+            $table->string('login_key');
             $table->ipAddress('ip_address');
             $table->string('browser');
             $table->string('platform');
-            $table->integer('expired');
+            $table->integer('created_at');
+            $table->integer('expired_at');
             $table->timestamps();
         });
     }
