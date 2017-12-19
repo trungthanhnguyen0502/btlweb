@@ -1,45 +1,185 @@
-<div class="container panel panel-default">
-    <div id='edit_option'>
-    </div>
-    
-    <div id = 'infomation'>
-        <div>
-            <span class="form-group col-md-3">
-                <label>Ngày tạo:</label>
-                <span> {{ticket.created_at | date: "dd-MM-yyyy"}}</span>
-            </span>
-
-            <span class="form-group">
-                <label>Ngày hết hạn: </label>
-                <span>   {{ticket.deadline | date: "dd-MM-yyyy"}}</span>    
-            </span>
+    <div class="main-content">
+        <div class="header-content">
+            <div class="row action-content">
+                <div class="col-md-4">
+                    <div class="title-header-content">
+                        <i class="fa fa-globe" aria-hidden="true"></i> Test
+                    </div>
+                </div>
+                <div class="col-md-8 group-action-content group-action-request-content">
+                    <button class="btn btn-sm"><i class="fa fa-users" aria-hidden="true"></i> Thay đổi bộ phận
+                        IT
+                    </button>
+                    <button class="btn btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Thay đổi mức độ ưu
+                        tiên
+                    </button>
+                    <button class="btn btn-sm "><i class="fa fa-calendar" aria-hidden="true"></i> Thay đổi
+                        deadline
+                    </button>
+                    <button class="btn btn-sm "><i class="fa fa-user" aria-hidden="true"></i> Thay đổi người
+                        liên quan
+                    </button>
+                    <button class="btn btn-sm "><i class="fa fa-hand-o-right" aria-hidden="true"></i> Assign
+                    </button>
+                    <button class="btn btn-sm dropdown-toggle"><i class="fa fa-exchange" aria-hidden="true"
+                                                                  style="color: #0ea432"></i> Thay đổi trạng
+                        thái
+                    </button>
+                </div>
+            </div>
         </div>
-        <class="form-group col-md-3" >
-            <label>Người yêu cầu: </label>
-            <span>  {{ticket.created_by}}     </span>    
-        </span>
-
-        <span class="form-group">
-            <label>Người thực hiện: </label>
-            <span> ..... </span>    
-        </span>
-        <span class="form-group">
-                <label>Bộ phận IT: </label>
-                <span> .....  </span>    
-        </span>
-
-        <br>
-        <span class="form-group">
-                <label>Mức độ ưu tiên: </label>
-                <span > {{ticket.priority | toPriority}}  </span>    
-        </span>
-        <span class="form-group">
-                <label>Trạng thái: </label>
-                <span>  {{ticket.status | toTicketStatus}}  </span>    
-        </span>
-
+        <div class="body-content">
+            <div class="row request-info">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6 request-label">Ngày tạo:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 request-label">Người yêu cầu:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 request-label">Mức độ ưu tiên:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6 request-label">Ngày hết hạn:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 request-label">Người thực hiện:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 request-label">Trạng thái:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        &nbsp;
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 request-label">Bộ phận IT:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 request-label">Người liên quan:</div>
+                        <div class="col-md-6">b</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div id= 'content'></div>
-
-</div>
+    <div class="discussion-content">
+        <div class="header-content">
+            <div class="row action-content">
+                <div class="col-md-4">
+                    <div class="title-header-content">
+                        <i class="fa fa-user" aria-hidden="true"></i> Nội dung
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body-content body-discussion">
+            <div class="post-content">
+                <img class="img-post-content">
+                </img>
+                <div class="info-post-content">
+                    <div>
+                        <span class="username-post-content">
+                            userName
+                        </span>
+                        <span class="content-post-content">
+                           post-content post-content post-content post-content post-content post-content post-content post-content post-content
+                        </span>
+                    </div>
+                    <div>
+                        <a class="reply-btn-post-content" href="#">
+                            Trả lời
+                        </a>
+                        <span class="time-post-content">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> 02:06 PM Today
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content">
+                <img   class="img-post-content"> </img>
+                <div class="info-post-content">
+                    <div>
+                        <span class="username-post-content">
+             
+                        </span>
+                        <span class="content-post-content">
+                           post-content post-content post-content post-content post-content post-content post-content post-content post-content
+                        </span>
+                    </div>
+                    <div>
+                        <a class="reply-btn-post-content" href="#">
+                            Trả lời
+                        </a>
+                        <span class="time-post-content">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> 02:06 PM Today
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content">
+                <img   class="img-post-content">
+                </img>
+                <div class="info-post-content">
+                    <div>
+                        <span class="username-post-content">
+                          userName
+                        </span>
+                        <span class="content-post-content">
+                           post-content post-content post-content post-content post-content post-content post-content post-content post-content
+                        </span>
+                    </div>
+                    <div>
+                        <a class="reply-btn-post-content" href="#">
+                            Trả lời
+                        </a>
+                        <span class="time-post-content">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> 02:06 PM Today
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content">
+                <img >"
+                     class="img-post-content">
+                </img>
+                <div class="info-post-content">
+                    <div>
+                        <span class="username-post-content">
+                            userName
+                        </span>
+                        <span class="content-post-content">
+                           post-content post-content post-content post-content post-content post-content post-content post-content post-content
+                        </span>
+                    </div>
+                    <div>
+                        <a class="reply-btn-post-content" href="#">
+                            Trả lời
+                        </a>
+                        <span class="time-post-content">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> 02:06 PM Today
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-discussion">
+            <div class="title-input-discussion">Bình luận</div>
+            <textarea class="content-input-discussion" rows="10"></textarea>
+            <button class="btn btn-sm btn-info send-btn-input-discussion form-control">
+                <i class="fa fa-comments-o" aria-hidden="true"></i>
+                Gửi bình luận
+            </button>
+        </div>
+    </div>
