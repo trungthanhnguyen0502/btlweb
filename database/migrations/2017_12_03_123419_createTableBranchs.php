@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTableBranchs extends Migration
 {
@@ -15,7 +15,9 @@ class CreateTableBranchs extends Migration
     {
         Schema::create('branchs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('name');
+            $table->string('place');
+            $table->string('phone');
             $table->timestamps();
         });
     }

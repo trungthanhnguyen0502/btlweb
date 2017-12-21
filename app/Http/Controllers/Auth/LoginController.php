@@ -11,20 +11,13 @@ use Jenssegers\Agent\Agent;
 class LoginController extends Controller
 {
 
-    protected function create_login_key($emp_id, $ip_address, $request_time)
-    {
-        $random_key = mt_rand(1000, 9999);
-        $login_string = "{$emp_id}/{$ip_address}/{$request_time}";
-        return md5($login_string) . md5($random_key);
-    }
-
     public function index(Request $request)
     {
         $email = $request->input('email');
         $employees = Employee::where('email', $email)->get();
 
         if ($employees->count() == 1) {
-
+            // Has one employee with this email
             $employee = $employees[0];
             $password = md5($request->input('password'));
             if ($employee->password != $password) {
@@ -35,12 +28,12 @@ class LoginController extends Controller
                 ];
             }
 
+            // Collect session's information
             $ip_address = $request->server('REMOTE_ADDR');
             $agent = new Agent();
             $agent->setUserAgent($request->server('HTTP_USER_AGENT'));
             $browser = $agent->browser();
             $platform = $agent->platform();
-
             $request_time = $request->server('REQUEST_TIME');
 
             // Generate login key
@@ -67,6 +60,8 @@ class LoginController extends Controller
 
             return response()
                 ->json([
+                    'error' => false,
+                    'status' => 'login-ok',
                     'login_key' => $login_key,
                     'employee_id' => $employee->id,
                 ])
@@ -81,7 +76,14 @@ class LoginController extends Controller
         }
     }
 
-    public function forgot_password()
+    protected function create_login_key($emp_id, $ip_address, $request_time)
+    {
+        $random_key = mt_rand(1000, 9999);
+        $login_string = "{$emp_id}/{$ip_address}/{$request_time}";
+        return md5($login_string) . md5($random_key);
+    }
+
+    public function forgot_password(Request $request, $email, $captcha)
     {
 
     }

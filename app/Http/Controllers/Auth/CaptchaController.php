@@ -62,6 +62,16 @@ class CaptchaController extends Controller
         $this->jpeg_quality = $jpeg_quality;
     }
 
+    /**
+     * @param $key  string
+     * @return string
+     */
+
+    public static function hash($key)
+    {
+        return md5($key);
+    }
+
     public function set_credits($credits = '')
     {
         $this->credits = $credits;

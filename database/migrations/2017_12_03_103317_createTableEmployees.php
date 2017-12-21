@@ -17,13 +17,16 @@ class CreateTableEmployees extends Migration
             $table->increments('id');
             $table->string('email');
             $table->string('password');
+            $table->string('picture')->default('');
             $table->tinyInteger('gender');
             $table->integer('birthday');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('display_name');
             $table->string('title');
-            $table->string('roles');
+            $table->integer('branch');
+            $table->string('branch_name');
+            $table->tinyInteger('role');
             $table->string('is_leader_of')->nullable();
             $table->timestamps();
         });

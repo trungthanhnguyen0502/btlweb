@@ -16,7 +16,7 @@
  */
 
 Route::get('/', function () {
-	return session('captcha');
+	return 'This is base URL';
 });
 
 /**

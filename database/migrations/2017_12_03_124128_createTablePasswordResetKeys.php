@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTablePasswordResetKeys extends Migration
 {
@@ -21,7 +21,8 @@ class CreateTablePasswordResetKeys extends Migration
             $table->ipAddress('ip_address');
             $table->string('browser');
             $table->string('platform');
-            $table->integer('expired');
+            $table->integer('requested_at');
+            $table->integer('expired_at');
             $table->timestamps();
         });
     }
